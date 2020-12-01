@@ -42,7 +42,7 @@ public class Shop {
         }
     }
 
-    public static void randomDelay() {
+    public static void randomDelay () {
         Random random = new Random();
         int delay = 500 + random.nextInt(2000);
         try {

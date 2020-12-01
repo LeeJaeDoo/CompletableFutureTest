@@ -26,7 +26,7 @@ public class Quote {
         return shopName;
     }
 
-    public double getPrice() {
+    public double getPrice()  {
         return price;
     }
 
