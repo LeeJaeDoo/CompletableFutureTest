@@ -2,6 +2,13 @@ package com.company;
 
 import org.w3c.dom.ls.LSOutput;
 
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -11,6 +18,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadFactory;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
+import static java.time.temporal.TemporalAdjusters.nextOrSame;
 
 public class Main {
 
@@ -40,6 +50,11 @@ public class Main {
         CompletableFuture.anyOf(futures).join();
 //        System.out.println(completableFuturefindPrices("myPhone25s"));
         System.out.println("All shops have now responded in " + ((System.nanoTime() - start) / 1_000_000) + " msecs");
+
+        LocalDate date1 = LocalDate.of(2020, 9, 9);
+        LocalDate date2 = date1.with(nextOrSame(DayOfWeek.SUNDAY));
+        LocalDate date3 = date2.with(lastDayOfMonth());
+        System.out.println(date2 + " " + date3);
     }
 
     public static List<String> findPrices(String product) {
